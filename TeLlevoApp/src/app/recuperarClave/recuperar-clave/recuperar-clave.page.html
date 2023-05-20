@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-back-button slot="start"></ion-back-button>
+    <img src="../../../assets/logo/26 sin título_20221204170827.png" alt="">
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      Recupera tu clave
+    </ion-card-header>
+    <ion-card-content>
+      <form [formGroup] = 'recuperarUsuario' (ngSubmit)="recuperar()">
+        <ion-item>
+          <ion-label position = "floating" >Correo</ion-label>
+          <ion-input formControlName = "usuario"></ion-input>
+        </ion-item>
+        <ion-button style="display: flex; justify-content: center; align-items:center;" type="submit">Enviar</ion-button>
+    </form>
+    </ion-card-content>
+  </ion-card>
+
+
+
+</ion-content>

@@ -1,0 +1,149 @@
+<app-nav-bar></app-nav-bar>
+<br>
+<br>
+<br>
+
+<div class="main-content" style="text-align:center;">
+    <!-- <div class = "container-fluid">
+        <div class = "row">
+            <div class = "col-2"></div>
+            <div class = "col-8">
+                <img style = "display:flex;justify-content: center; align-items:center;"src="../../../assets/carrusel/1.png" alt="">
+            </div>
+            <div class = "col-2"></div>
+        </div>
+        <div class = "row">
+            <div class = "col-2"></div>
+            <div class = "col-4">
+                <img src="../../../assets/carrusel/1.png" alt="">
+            </div>
+            <div class = "col-4">
+                <img src="../../../assets/carrusel/1.png" alt="">
+            </div>
+            <div class = "col-2"></div>
+        </div>
+    </div> -->
+    <div class="card">
+        <div class="card-body">
+            <h1>¿Quienes somos?</h1>
+            <img style="width : 200px; height : 200px; margin-top :-50px; margin-bottom :-50px"
+                src="../../../assets/26 sin título_20221204170827.png">
+            <h3>Somos una empresa surgente de la necesidad de transporte para alumnos de DuocUC.</h3>
+        </div>
+
+    </div>
+
+    <hr>
+
+    <div class="card">
+        <div class="card-body">
+            <h5>Nuestra mision es poder lograr la mayoria de asistencia en los estudiantes de DuocUC mediante el
+                trasporte de otros estudiantes que si cuentan con movilización propia.</h5>
+        </div>
+    </div>
+
+
+    <h2>¿Como funciona esto?</h2>
+
+    <p style="color : green; font-weight : bold; font-size :20">Podrás crear tu cuenta, en donde puedes ser pasajero o
+        puedes ser conductor. asignandose a los viajes costos impresionantemente baratos, que además se divide entre los
+        pasajeros registrados.</p>
+
+    <div class="container">
+        <div class="row">
+            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="../../../assets/carrusel/1.png" class="img-fluid" alt="...">
+                        <figcaption class="figure-caption">Creando un viaje.</figcaption>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="../../../assets/carrusel/2.png" class="img-fluid" alt="...">
+                        <figcaption class="figure-caption">Viendo los viajes disponibles.</figcaption>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="../../../assets/carrusel/3.png" class="img-fluid" alt="...">
+                        <figcaption class="figure-caption">Detalles del viaje seleccionado.</figcaption>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <h5>Luego de abrir un viaje por primera vez, estará disponible por 8 minutos. en donde podrás registrarse e
+        interactuar. pasado el tiempo, el viaje procede a eliminarse de la lista y procede a partir.</h5>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-4">
+                <p style="color : green">Rapido</p>
+            </div>
+            <div class="col-4">
+                <p style="color : green">Econocimo</p>
+            </div>
+            <div class="col-4">
+                <p style="color : green">Intuitivo</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <img style="width: 30%;;" src="../../../assets/Green-Check-PNG-Image.png" alt="check">
+
+            </div>
+            <div class="col-4">
+                <img style="width: 30%;;" src="../../../assets/Green-Check-PNG-Image.png" alt="check">
+            </div>
+            <div class="col-4">
+                <img style="width: 30%;;" src="../../../assets/Green-Check-PNG-Image.png" alt="check">
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+<hr>
+<h1 style="text-align:center;">Descarga nuestro APK y comienza a viajar ya!</h1>
+<div *ngIf="currentPlatform == 'CHROME'" class="container-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-8">
+                <div style="display:flex;justify-content:center;align-items:center">
+                    <qrcode [qrdata]="qrCodeString" [width]="512">
+
+                    </qrcode>
+                </div>
+
+            </div>
+            <div class="col-2"></div>
+        </div>
+    </div>
+</div>
+<div *ngIf="currentPlatform == 'ANDROID' || currentPlatform == 'IOS'" class="container-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-4"></div>
+            <div class="col-4">
+                <a href="../../../assets/apk/TeLlevoApp.apk" download>
+                    <button type="button" class="btn btn-success">Descargar APK</button>
+                </a>
+            </div>
+            <div class="col-4"></div>
+        </div>
+
+    </div>
+
+
+</div>

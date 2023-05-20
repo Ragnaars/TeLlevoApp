@@ -1,0 +1,168 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-back-button></ion-back-button>
+    <ion-item>
+      <label for="h1">Hacia...</label>
+      <h2 id="h1">{{endAddress}}</h2>
+    </ion-item>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <div class="map" #map></div>
+  <div class="res">
+    <ion-note srtyle="display:flex;align-items:center">Si el mapa no carga, desliza para actualizar :D</ion-note>
+    <p *ngIf="registrado == true;" style="text-align:center; font-size: 6; color: green">Registrado</p>
+    <ion-card>
+
+      <ion-list>
+        <ion-label style="text-align:center; display :flex;align-content:center;justify-content:center">
+          Punto de reunion
+        </ion-label>
+        <ion-item style="text-align:center;align-content:center">
+          {{startAddress}}
+        </ion-item>
+        <ion-accordion-group>
+          <ion-accordion value="first">
+            <ion-item slot="header" color="light">
+              Pasajeros : {{pasajerosSentados}}/4
+            </ion-item>
+            <div class="ion-padding" slot="content">
+              <ion-list>
+                <ion-item *ngFor="let pasajero of pasajeros">
+                  {{pasajero.email}}
+                  <ion-button *ngIf="e == conductor" (click)="eliminarUsuario(pasajero.id,pasajero.email)" slot="end">
+                    <ion-icon name="trash-outline"></ion-icon>
+                  </ion-button>
+                </ion-item>
+              </ion-list>
+            </div>
+          </ion-accordion>
+        </ion-accordion-group>
+        <ion-item>
+          total : {{precio}}
+        </ion-item>
+        <ion-item *ngIf='total>0'>
+          total c/u : {{total}}
+        </ion-item>
+      </ion-list>
+
+      <ion-modal #modal trigger="open-modal">
+        <ng-template>
+          <ion-content>
+            <ion-toolbar>
+              <ion-buttons slot="end">
+                <ion-button (click)="modal.dismiss()">Close</ion-button>
+              </ion-buttons>
+            </ion-toolbar>
+            <ion-card>
+              <ion-card-header>
+                <ion-card-title>
+                  Comentario
+                </ion-card-title>
+              </ion-card-header>
+              <ion-card-content>
+                <form [formGroup]="formularioComentario" (ngSubmit)="agregarComentario()">
+                  <ion-item>
+                    <ion-textarea formControlName="comentario"></ion-textarea>
+                  </ion-item>
+                  <ion-item>
+                    <ion-button [disabled]="formularioComentario.invalid" role="submit" type="submit" (click)="close()">
+                      Guardar
+                    </ion-button>
+                  </ion-item>
+                </form>
+              </ion-card-content>
+            </ion-card>
+          </ion-content>
+        </ng-template>
+      </ion-modal>
+<!--
+      <ion-modal #modal trigger="modal">
+        <ng-template>
+          <ion-content>
+            <ion-toolbar>
+              <ion-title>Pasajeros</ion-title>
+            </ion-toolbar>
+            <ion-list *ngFor="let pasajero of pasajeros">
+              <ion-item>
+                <ion-avatar slot="start">
+                  <ion-img [src]=""></ion-img>
+                </ion-avatar>
+                <ion-label>
+                  <h2>{{pasajero.email}}</h2>
+                </ion-label>
+              </ion-item>
+            </ion-list>
+            <ion-item>
+              <h3>Total: <span>${{precio}}</span></h3>
+            </ion-item>
+            <ion-grid>
+              <ion-row>
+                <ion-col style="justify-content: center;
+                align-items: center;
+                left: 1cm;">
+                  <ion-button class="glow-on-hover" color="success"
+                    (click)="comenzar()">Viajar</ion-button></ion-col>
+              </ion-row>
+            </ion-grid>
+            <ion-note>
+              <p style="text-align:center;"> presiona fuera de la ventana modal para salir</p>
+            </ion-note>
+          </ion-content>
+        </ng-template>
+      </ion-modal> -->
+
+
+      <ion-list>
+        <ion-item *ngFor="let com of comentario">
+          <ion-grid>
+            <ion-row>
+              <ion-item>
+                <ion-avatar slot="start">
+                  <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+                </ion-avatar>
+                <ion-label>
+                  <p style="font-size:8">{{com.autor}}</p>
+                  <ion-note>{{com.fecha | date : 'short'}}</ion-note>
+                </ion-label>
+              </ion-item>
+            </ion-row>
+            <ion-row>
+              <ion-col size="2"></ion-col>
+              <ion-col size="8">
+                <h6 style="text-align:center">{{com.comentario}}</h6>
+              </ion-col>
+              <ion-col size="2"></ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-item>
+      </ion-list>
+      <ion-button id="open-modal" expand="block" color="primary">
+        <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+      </ion-button>
+    </ion-card>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="3"></ion-col>
+        <ion-col size="6">
+          <ion-button style="display: flex; justify-content: center; align-items:center;"
+            *ngIf="e !=conductor && registrado == false" (click)="agregarPasajero()">Registrate</ion-button>
+          <ion-button style="display: flex; justify-content: center; align-items:center;" *ngIf="registrado == true "
+            (click)="salirme()">Salirse</ion-button>
+          <ion-button expand="block"
+            style="display: flex; justify-content: center; align-items:center;" *ngIf="conductor == e " (click) = "comenzar()">Comenzar
+            Viaje</ion-button>
+        </ion-col>
+        <ion-col size="3"></ion-col>
+
+      </ion-row>
+    </ion-grid>
+  </div>
+
+
+
+</ion-content>

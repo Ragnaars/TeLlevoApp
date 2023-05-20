@@ -1,0 +1,71 @@
+<ion-header>
+  <ion-toolbar>
+    <img src="../../../assets/logo/26 sin título_20221204170827.png" alt="">
+    <ion-searchbar (ionChange)="handleChange($event)" animated placeholder="Busca una ubicacion referente o a tu conductor favorito"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <p style = "font-size:5; color: grey;text-align:center">Desliza para actualizar</p>
+  <ion-button  [routerLink] = '("/home")' style = "font-size:10px;display: flex; align-items: center;justify-content: center;">
+    crea tu viaje
+    <ion-icon name="car-sport-outline"></ion-icon>
+  </ion-button>
+  <p style = "text-align: center;" >Busca un viaje que te acomode</p>
+  <ion-list *ngFor = "let detalle of results">
+    <ion-card>
+      <ion-note>
+        {{detalle.fecha | date:'short' }}
+      </ion-note>
+      <ion-card-header>
+        {{detalle.foto}}
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item>
+          <ion-label>
+            Hacia...
+          </ion-label>
+          {{detalle.endAddress}}
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            Precio
+          </ion-label>
+          <ion-note>${{detalle.precio}}</ion-note>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            Kilometros a recorrer
+          </ion-label>
+          <ion-note>{{detalle.kmString}}</ion-note>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            Conductor
+          </ion-label>
+          <ion-note>{{detalle.conductor}}</ion-note>
+        </ion-item>
+        <ion-button  id = "button"[routerLink] = "['/detalle-viaje', detalle.id]" style = "display: flex; align-items: center;justify-content: center;">
+          <ion-icon style = "size: 100%;"name="arrow-redo-outline"></ion-icon>
+        </ion-button>
+
+      </ion-card-content>
+      <ion-button *ngIf = "detalle.conductor == user" [routerLink] = "['/eliminar',detalle.id]" style = "display: flex; align-items: center">
+        <ion-icon name = trash></ion-icon>
+      </ion-button>
+    </ion-card>
+  </ion-list>
+
+<!-- <ion-infinite-scroll (ionInfinite)="cargarMasElementos()">
+    <ion-infinite-scroll-content
+      loadingText="Cargando ..."
+    ></ion-infinite-scroll-content>
+  </ion-infinite-scroll> -->
+  <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>

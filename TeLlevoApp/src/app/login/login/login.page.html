@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <img src="../../../assets/logo/26 sin título_20221204170827.png" alt="">
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>
+        Inicia sesion!
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <form [formGroup]="formularioLogin" (ngSubmit)="log()">
+        <ion-item>
+          <ion-label color = "rgb(145, 216, 134)" position = "floating" >Correo</ion-label>
+          <ion-input formControlName = "usuario"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position = "floating" >Contraseña</ion-label>
+          <ion-input type = "password" formControlName = "contraseña"></ion-input>
+        </ion-item>
+
+        <ion-button style = "display:flex;align-items:center;justify-content:center"type = "submit">Entrar</ion-button>
+      </form>
+
+    </ion-card-content>
+  </ion-card>
+
+<ion-footer style = "margin-bottom: -80%;">
+  <p>No tienes cuenta? <a (click)="irReg()">Ir a reg</a> </p>
+  <p>Olvidaste tu clave? <a [routerLink]="('/recuperar-clave')">Recuperala</a> </p>
+</ion-footer>
+</ion-content>

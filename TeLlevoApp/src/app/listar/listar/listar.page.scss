@@ -1,0 +1,25 @@
+img {
+    max-width: 100%;
+    border: 0;
+    width: 50%;
+    /* height: 20%; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    margin-top: -13%;
+    margin-bottom: -13%;
+}
+ion-button{
+    --color :rgb(235, 116, 18)
+}
+
+input-wrapper {
+    flex: 1 1 0%;
+    flex-direction: inherit;
+    align-items: inherit;
+    align-self: stretch;
+    text-overflow: ellipsis;
+    overflow: inherit;
+    box-sizing: border-box;
+}

@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-back-button slot = "start"></ion-back-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <h5>Estas seguro de eliminar este viaje?</h5>
+    <ion-grid>
+      <ion-row>
+        <ion-col size = 4>
+          <ion-button [routerLink] = "[('/tabs/listar')]">
+            no
+          </ion-button>
+        </ion-col>
+        <ion-col size = 4></ion-col>
+        <ion-col size = 4>
+          <ion-button (click) = "eliminar()">
+            si
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+</ion-content>
